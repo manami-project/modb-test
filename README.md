@@ -3,8 +3,21 @@
 _modb_ stands for _**M**anami **O**ffline **D**ata**B**ase_. Repositories prefixed with this acronym are used to create the [manami-project/anime-offline-database](https://github.com/manami-project/anime-offline-database).
 
 # What does this lib do?
-
 This lib contains all essential dependencies as well as some convenience functions and classes for creating tests in _modb_ prefixed kotlin projects.
+
+# Usage
+Add repository and dependency
+```kotlin
+repositories {
+    maven {
+        url = uri("https://dl.bintray.com/manami-project/maven")
+    }
+}
+
+dependencies {
+    testImplementation("io.github.manamiproject:modb-test:$version")
+}
+```
 
 # Features
 ## essential test dependencies
