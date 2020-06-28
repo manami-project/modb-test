@@ -80,7 +80,7 @@ val javaDoc by tasks.registering(Jar::class) {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "io.github.manamiproject"
+            groupId = project.group.toString()
             artifactId = projectName
             version = project.version.toString()
 
