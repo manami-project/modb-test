@@ -57,7 +57,7 @@ bintray {
 
     with(pkg) {
         repo = "maven"
-        name = "modb-test"
+        name = projectName
         with(version) {
             name = project.version.toString()
             vcsTag = project.version.toString()
