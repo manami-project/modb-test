@@ -6,7 +6,7 @@ _modb_ stands for _**M**anami **O**ffline **D**ata**B**ase_. Repositories prefix
 This lib contains all essential dependencies as well as some convenience functions and classes for creating tests in _modb_ prefixed kotlin projects.
 
 # Usage
-Add repository and dependency
+Add the repository and dependency to your build file
 ```kotlin
 repositories {
     maven {
