@@ -8,7 +8,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-internal class TempDirectoryTest {
+internal class TempDirectoryKtTest {
 
     @Nested
     inner class TempDirectoryTests {

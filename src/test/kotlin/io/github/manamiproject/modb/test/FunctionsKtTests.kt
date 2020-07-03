@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
 import java.nio.file.Files
 
-internal class FunctionsTests {
+internal class FunctionsKtTests {
 
     @Test
     fun `shouldNotBeInvoked() throws exception with specific message` () {
