@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.4.0"
+    kotlin("jvm") version "1.4.10"
     id("com.jfrog.bintray") version "1.8.5"
     `maven-publish`
     `java-library`
