@@ -22,9 +22,9 @@ dependencies {
     api("org.junit.jupiter:junit-jupiter-engine:5.6.2")
     api("org.assertj:assertj-core:3.17.2")
     api("com.github.tomakehurst:wiremock-jre8:2.27.2")
+    api("org.junit.platform:junit-platform-launcher:1.6.2")
 
     implementation(platform(kotlin("bom")))
-    implementation("org.junit.platform:junit-platform-launcher:1.6.2")
 }
 
 val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
