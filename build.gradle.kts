@@ -19,7 +19,7 @@ val projectName = "modb-test"
 dependencies {
     api(kotlin("test-junit5"))
     api(kotlin("stdlib-jdk8"))
-    api("org.junit.jupiter:junit-jupiter-engine:5.6.2")
+    api("org.junit.jupiter:junit-jupiter-engine:5.7.0")
     api("org.assertj:assertj-core:3.17.2")
     api("com.github.tomakehurst:wiremock-jre8:2.27.2")
     api("org.junit.platform:junit-platform-launcher:1.7.0")
