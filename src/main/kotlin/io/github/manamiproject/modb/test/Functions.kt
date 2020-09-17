@@ -26,13 +26,13 @@ import kotlin.test.fail
  * @return [Path] object of the given file.
  */
 fun testResource(path: String): Path {
-    val resource = TempDirectory::class.java.classLoader.getResource(path) ?: throw IllegalStateException("Path [$path] not found.")
+    val resource = ClassLoader.getSystemResource(path)?.toURI() ?: throw IllegalStateException("Path [$path] not found.")
 
-    return Paths.get(resource.toURI())
+    return Paths.get(resource)
 }
 
 /**
- * Reads the content of a file from _src/test/resources_ into a [String]
+ * Reads the content of a file from _src/test/resources_ into a [String].
  * Line separators will always be converted to `\n`
  *
  * **Example**:
