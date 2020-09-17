@@ -85,7 +85,7 @@ internal class FunctionsKtTests {
             val result = loadTestResource("test_resource_tests/test-file.txt")
 
             // then
-            assertThat(result).isEqualTo("File in\nroot directory.")
+            assertThat(result).isEqualTo("File in\n\nroot directory.")
         }
 
         @Test

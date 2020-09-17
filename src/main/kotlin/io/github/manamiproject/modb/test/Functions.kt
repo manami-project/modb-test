@@ -1,5 +1,7 @@
 package io.github.manamiproject.modb.test
 
+import java.io.BufferedReader
+import java.lang.ClassLoader.getSystemResourceAsStream
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -31,6 +33,7 @@ fun testResource(path: String): Path {
 
 /**
  * Reads the content of a file from _src/test/resources_ into a [String]
+ * Line separators will always be converted to `\n`
  *
  * **Example**:
  *
@@ -53,7 +56,10 @@ fun loadTestResource(path: String): String {
 
     check(Files.exists(file) and Files.isRegularFile(file)) { "[$path] either not exist or is not a file." }
 
-    return Files.readAllLines(file).joinToString("\n")
+    return getSystemResourceAsStream(path)?.bufferedReader()
+            ?.use(BufferedReader::readText)
+            ?.replace(System.getProperty("line.separator"), "\n")
+            ?: throw IllegalStateException("Unable to load file [$path]")
 }
 
 /**
