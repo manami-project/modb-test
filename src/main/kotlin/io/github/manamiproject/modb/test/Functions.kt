@@ -14,11 +14,11 @@ import kotlin.test.fail
  *
  * For _src/test/resources/file.txt_ you can call
  * ```
- * testResource("file.txt")
+ * val file = testResource("file.txt")
  * ```
  * For _src/test/resources/dir/subdir/file.txt_ you can call
  * ```
- * testResource("dir/subdir/file.txt")
+ * val file = testResource("dir/subdir/file.txt")
  * ```
  *
  * @since 1.0.0
@@ -39,11 +39,11 @@ fun testResource(path: String): Path {
  *
  * For _src/test/resources/file.txt_ you can call
  * ```
- * testResource("file.txt")
+ * val content = loadTestResource("file.txt")
  * ```
  * For _src/test/resources/dir/subdir/file.txt_ you can call
  * ```
- * testResource("dir/subdir/file.txt")
+ * val content = loadTestResource("dir/subdir/file.txt")
  * ```
  *
  * @since 1.0.0
