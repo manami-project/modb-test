@@ -21,7 +21,7 @@ internal class FunctionsKtTests {
     }
 
     @Nested
-    inner class TestResourcesTests {
+    inner class TestResourceTests {
 
         @Test
         fun `test resource in root directory`() {
@@ -77,7 +77,7 @@ internal class FunctionsKtTests {
     }
 
     @Nested
-    inner class LoadTestResourcesTests {
+    inner class LoadTestResourceTests {
 
         @Test
         fun `load test resource from root directory`() {
