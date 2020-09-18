@@ -26,6 +26,7 @@ import kotlin.test.fail
  * @return [Path] object of the given file.
  */
 fun testResource(path: String): Path {
+    require(path.isNotBlank()) { "Path must not be blank" }
     val resource = ClassLoader.getSystemResource(path)?.toURI() ?: throw IllegalStateException("Path [$path] not found.")
 
     return Paths.get(resource)
@@ -52,8 +53,9 @@ fun testResource(path: String): Path {
  * @throws IllegalStateException If the given path is not a regular file.
  */
 fun loadTestResource(path: String): String {
-    val file = testResource(path)
+    require(path.isNotBlank()) { "Path must not be blank" }
 
+    val file = testResource(path)
     check(Files.exists(file) and Files.isRegularFile(file)) { "[$path] either not exist or is not a file." }
 
     return getSystemResourceAsStream(path)?.bufferedReader()

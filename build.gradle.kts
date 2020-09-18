@@ -1,3 +1,5 @@
+import Build_gradle.Versions.JUNIT_VERSION
+
 plugins {
     kotlin("jvm") version "1.4.10"
     id("com.jfrog.bintray") version "1.8.5"
@@ -19,10 +21,11 @@ val projectName = "modb-test"
 dependencies {
     api(kotlin("test-junit5"))
     api(kotlin("stdlib-jdk8"))
-    api("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    api("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
+    api("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
+    api("org.junit.platform:junit-platform-launcher:1.7.0")
     api("org.assertj:assertj-core:3.17.2")
     api("com.github.tomakehurst:wiremock-jre8:2.27.2")
-    api("org.junit.platform:junit-platform-launcher:1.7.0")
 
     implementation(platform(kotlin("bom")))
 }
@@ -47,6 +50,7 @@ tasks.withType<Test> {
 
 object Versions {
     const val JVM_TARGET = "11"
+    const val JUNIT_VERSION = "5.7.0"
 }
 
 bintray {

@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import org.opentest4j.AssertionFailedError
 import java.nio.file.Files
 
@@ -74,6 +76,18 @@ internal class FunctionsKtTests {
             // then
             assertThat(result).hasMessage("Path [$path] not found.")
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = ["", "     "])
+        fun `throws exception if the path is empty or blank`(path: String) {
+            // when
+            val result = assertThrows<IllegalArgumentException> {
+                testResource(path)
+            }
+
+            // then
+            assertThat(result).hasMessage("Path must not be blank")
+        }
     }
 
     @Nested
@@ -121,6 +135,18 @@ internal class FunctionsKtTests {
 
             // then
             assertThat(result).hasMessage("Path [$path] not found.")
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = ["", "     "])
+        fun `throws exception if the path is empty or blank`(path: String) {
+            // when
+            val result = assertThrows<IllegalArgumentException> {
+                loadTestResource(path)
+            }
+
+            // then
+            assertThat(result).hasMessage("Path must not be blank")
         }
     }
 }
