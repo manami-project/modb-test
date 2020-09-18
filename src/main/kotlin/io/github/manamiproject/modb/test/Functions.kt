@@ -25,7 +25,7 @@ import kotlin.test.fail
  * @see loadTestResource
  * @return [Path] object of the given file.
  */
-fun testResource(path: String): Path {
+public fun testResource(path: String): Path {
     require(path.isNotBlank()) { "Path must not be blank" }
     val resource = ClassLoader.getSystemResource(path)?.toURI() ?: throw IllegalStateException("Path [$path] not found.")
 
@@ -52,7 +52,7 @@ fun testResource(path: String): Path {
  * @return Content of a file as [String]
  * @throws IllegalStateException If the given path is not a regular file.
  */
-fun loadTestResource(path: String): String {
+public fun loadTestResource(path: String): String {
     require(path.isNotBlank()) { "Path must not be blank" }
 
     val file = testResource(path)
@@ -68,4 +68,4 @@ fun loadTestResource(path: String): String {
  * Lets a test fail with a message that the invocation shouldn't have happened.
  * @since 1.0.0
  */
-fun shouldNotBeInvoked(): Nothing = fail("should not be invoked")
+public fun shouldNotBeInvoked(): Nothing = fail("should not be invoked")

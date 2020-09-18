@@ -30,6 +30,10 @@ dependencies {
     implementation(platform(kotlin("bom")))
 }
 
+kotlin {
+    explicitApi()
+}
+
 val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = Versions.JVM_TARGET

@@ -8,11 +8,11 @@ import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemp
  * Starts a [WireMockServer] on a random port and stops it after the test.
  * @since 1.0.0
  */
-class WireMockServerCreator : MockServerTestCase<WireMockServer> {
+public class WireMockServerCreator : MockServerTestCase<WireMockServer> {
 
     override val serverInstance: WireMockServer = initServer()
 
-    override val port = serverInstance.port()
+    override val port: Int = serverInstance.port()
 
     override fun afterEach() {
         serverInstance.stop()

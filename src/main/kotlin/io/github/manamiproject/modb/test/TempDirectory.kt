@@ -9,9 +9,9 @@ import java.nio.file.Path
  * @since 1.0.0
  * @see tempDirectory
  */
-class TempDirectory(prefix: String = "modb_") : Closeable {
+public class TempDirectory(prefix: String = "modb_") : Closeable {
 
-    val tempDir: Path = Files.createTempDirectory(prefix)
+    public val tempDir: Path = Files.createTempDirectory(prefix)
 
     override fun close() {
         tempDir.toFile().deleteRecursively()
@@ -32,7 +32,7 @@ class TempDirectory(prefix: String = "modb_") : Closeable {
  *
  * @since 1.0.0
  */
-fun tempDirectory(action: TempDirectory.() -> Unit) {
+public fun tempDirectory(action: TempDirectory.() -> Unit) {
     val tempDir = TempDirectory()
 
     tempDir.use {

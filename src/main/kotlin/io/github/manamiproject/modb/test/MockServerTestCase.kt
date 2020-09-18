@@ -8,24 +8,24 @@ import org.junit.jupiter.api.AfterEach
  * @param T Instance type of the mock server.
  * @sample WireMockServerCreator
  */
-interface MockServerTestCase<T> {
+public interface MockServerTestCase<T> {
 
     /**
      * Called after each test.
      * @since 1.0.0
      */
     @AfterEach
-    fun afterEach()
+    public fun afterEach()
 
     /**
      * Concrete server instance.
      * @since 1.0.0
      */
-    val serverInstance: T
+    public val serverInstance: T
 
     /**
      * Port on which the mock server is listening.
      * @since 1.0.0
      */
-    val port: Int
+    public val port: Int
 }
