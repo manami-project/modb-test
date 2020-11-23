@@ -24,7 +24,7 @@ dependencies {
     api("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
     api("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
     api("org.junit.platform:junit-platform-launcher:1.7.0")
-    api("org.assertj:assertj-core:3.17.2")
+    api("org.assertj:assertj-core:3.18.1")
     api("com.github.tomakehurst:wiremock-jre8:2.27.2")
 
     implementation(platform(kotlin("bom")))
