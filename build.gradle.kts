@@ -54,7 +54,7 @@ tasks.withType<Test> {
 
 object Versions {
     const val JVM_TARGET = "11"
-    const val JUNIT_VERSION = "5.7.0"
+    const val JUNIT_VERSION = "5.7.1"
 }
 
 bintray {
