@@ -5,20 +5,6 @@ _[modb](https://github.com/manami-project?tab=repositories&q=modb&type=source)_ 
 # What does this lib do?
 This lib contains all essential dependencies as well as some convenience functions and classes for creating tests in _modb_ prefixed kotlin projects.
 
-# Usage
-Add the repository and dependency to your build file
-```kotlin
-repositories {
-    maven {
-        url = uri("https://dl.bintray.com/manami-project/maven")
-    }
-}
-
-dependencies {
-    testImplementation("io.github.manamiproject:modb-test:$version")
-}
-```
-
 # Features
 ## essential test dependencies
 * junit5
