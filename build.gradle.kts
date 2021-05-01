@@ -2,21 +2,18 @@ import Build_gradle.Versions.JUNIT_VERSION
 
 plugins {
     kotlin("jvm") version "1.5.0"
-    id("com.jfrog.bintray") version "1.8.5"
     `maven-publish`
     `java-library`
 }
 
 repositories {
-    jcenter()
-    maven {
-        url = uri("https://dl.bintray.com/manami-project/maven")
-    }
+    mavenCentral()
 }
 
 group = "io.github.manamiproject"
-version = project.findProperty("releaseVersion") as String? ?: ""
+version = project.findProperty("release.version") as String? ?: ""
 val projectName = "modb-test"
+val githubUsername = "manami-project"
 
 dependencies {
     api(kotlin("test-junit5"))
@@ -57,24 +54,6 @@ object Versions {
     const val JUNIT_VERSION = "5.7.1"
 }
 
-bintray {
-    user = project.findProperty("bintrayUser") as String? ?: ""
-    key = project.findProperty("bintrayApiKey") as String? ?: ""
-
-    setPublications("maven")
-
-    with(pkg) {
-        repo = "maven"
-        name = projectName
-        with(version) {
-            name = project.version.toString()
-            vcsTag = project.version.toString()
-        }
-        setLicenses("AGPL-V3")
-        vcsUrl = "https://github.com/manami-project/$projectName"
-    }
-}
-
 val sourcesJar by tasks.registering(Jar::class) {
     archiveClassifier.set("sources")
     from(sourceSets.main.get().allSource)
@@ -86,6 +65,16 @@ val javaDoc by tasks.registering(Jar::class) {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/$githubUsername/$projectName")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: githubUsername
+                password = project.findProperty("gpr.key") as String? ?: ""
+            }
+        }
+    }
     publications {
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
@@ -100,7 +89,7 @@ publishing {
                 packaging = "jar"
                 name.set(projectName)
                 description.set("This lib contains all essential dependencies as well as some convenience functions and classes for creating tests in modb prefixed kotlin projects.")
-                url.set("https://github.com/manami-project/$projectName")
+                url.set("https://github.com/$githubUsername/$projectName")
 
                 licenses {
                     license {
@@ -110,9 +99,9 @@ publishing {
                 }
 
                 scm {
-                    connection.set("scm:git@github.com:manami-project/$projectName.git")
-                    developerConnection.set("scm:git:ssh://github.com:manami-project/$projectName.git")
-                    url.set("https://github.com/manami-project/$projectName")
+                    connection.set("scm:git@github.com:$githubUsername/$projectName.git")
+                    developerConnection.set("scm:git:ssh://github.com:$githubUsername/$projectName.git")
+                    url.set("https://github.com/$githubUsername/$projectName")
                 }
             }
         }
