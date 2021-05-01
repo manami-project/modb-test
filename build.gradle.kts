@@ -1,7 +1,7 @@
 import Build_gradle.Versions.JUNIT_VERSION
 
 plugins {
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "1.5.0"
     id("com.jfrog.bintray") version "1.8.5"
     `maven-publish`
     `java-library`
@@ -25,7 +25,7 @@ dependencies {
     api("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
     api("org.junit.platform:junit-platform-launcher:1.7.1")
     api("org.assertj:assertj-core:3.19.0")
-    api("com.github.tomakehurst:wiremock-jre8:2.27.2")
+    api("com.github.tomakehurst:wiremock:2.27.2")
 
     implementation(platform(kotlin("bom")))
 }
