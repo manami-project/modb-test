@@ -20,7 +20,7 @@ dependencies {
     api(kotlin("stdlib-jdk8"))
     api("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
     api("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
-    api("org.junit.platform:junit-platform-launcher:1.7.1")
+    api("org.junit.platform:junit-platform-launcher:1.7.2")
     api("org.assertj:assertj-core:3.19.0")
     api("com.github.tomakehurst:wiremock:2.27.2")
 
