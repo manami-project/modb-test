@@ -44,8 +44,8 @@ compileTestKotlin.kotlinOptions {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    reports.html.isEnabled = false
-    reports.junitXml.isEnabled = false
+    reports.html.required.set(false)
+    reports.junitXml.required.set(false)
     maxParallelForks = Runtime.getRuntime().availableProcessors()
 }
 
@@ -62,7 +62,7 @@ val javaDoc by tasks.registering(Jar::class) {
 publishing {
     repositories {
         maven {
-            name = "GitHubPackages"
+            name = projectName
             url = uri("https://maven.pkg.github.com/$githubUsername/$projectName")
             credentials {
                 username = parameter("GH_USERNAME", githubUsername)
