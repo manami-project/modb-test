@@ -105,7 +105,7 @@ publishing {
 
 object Versions {
     const val JVM_TARGET = "11"
-    const val JUNIT_VERSION = "5.7.2"
+    const val JUNIT_VERSION = "5.8.0"
 }
 
 fun parameter(name: String, default: String = ""): String {
