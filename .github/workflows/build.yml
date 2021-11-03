@@ -9,10 +9,10 @@ on:
       - '.gitignore'
       - '.gitattributes'
       - '.github/workflows/**'
-      - '!.github/workflows/test-and-coverage.yml'
+      - '!.github/workflows/build.yml'
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:

@@ -9,10 +9,10 @@ on:
       - '.gitignore'
       - '.gitattributes'
       - '.github/workflows/**'
-      - '!.github/workflows/test-pull-request.yml'
+      - '!.github/workflows/pull-requests.yml'
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
