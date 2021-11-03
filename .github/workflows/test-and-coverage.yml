@@ -1,17 +1,18 @@
-name: Pull Requests
+name: Build
 
 on:
-  pull_request:
+  push:
     branches:
-      - '**'
+      - 'master'
     paths-ignore:
       - 'README.md'
       - '.gitignore'
       - '.gitattributes'
       - '.github/workflows/**'
+      - '!.github/workflows/test-and-coverage.yml'
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,5 +29,11 @@ jobs:
         run: chmod +x gradlew
       - name: Execute tests
         env:
-          GH_PACKAGES_READ_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PACKAGES_READ_TOKEN: ${{ secrets.PACKAGES_READ_TOKEN }}
         run: ./gradlew test
+      - name: Generate coverage
+        if: ${{ matrix.java == 11 }}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew jacocoTestReport coverallsJacoco
