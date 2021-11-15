@@ -1,7 +1,7 @@
 import Build_gradle.Versions.JUNIT_VERSION
 
 plugins {
-    kotlin("jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.0"
     `maven-publish`
     `java-library`
     jacoco
@@ -114,7 +114,7 @@ tasks.jacocoTestReport {
 }
 
 object Versions {
-    const val JVM_TARGET = "11"
+    const val JVM_TARGET = "17"
     const val JUNIT_VERSION = "5.8.1"
 }
 
