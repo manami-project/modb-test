@@ -1,5 +1,6 @@
 package io.github.manamiproject.modb.test
 
+import kotlinx.coroutines.*
 import java.io.BufferedReader
 import java.lang.ClassLoader.getSystemResourceAsStream
 import java.nio.file.Files
@@ -67,5 +68,33 @@ public fun loadTestResource(path: String): String {
 /**
  * Lets a test fail with a message that the invocation shouldn't have happened.
  * @since 1.0.0
+ * @throws AssertionError
  */
 public fun shouldNotBeInvoked(): Nothing = fail("should not be invoked")
+
+/**
+ * Allows to test suspend functions which are expected to throw an exception.
+ * @since 1.4.0
+ * @param func Suspend function to be testet.
+ * @return The exception that has been thrown
+ * @throws AssertionError In case no exception has been thrown or the exception is it of the expected type.
+ */
+public inline fun <reified T: Throwable> exceptionExpected(noinline func: suspend CoroutineScope.() -> Unit): Throwable {
+    var result: Throwable? = null
+
+    val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        result = throwable
+    }
+
+    runBlocking {
+        CoroutineScope(Job() + CoroutineName("UnitTest") + exceptionHandler).launch {
+            func.invoke(this)
+        }.join()
+    }
+
+    return when (result) {
+        null -> fail("No exception has been thrown")
+        !is T -> fail("Expected [${T::class.simpleName}] to be thrown, but [${result!!::class.simpleName}] was thrown.")
+        else -> result!!
+    }
+}

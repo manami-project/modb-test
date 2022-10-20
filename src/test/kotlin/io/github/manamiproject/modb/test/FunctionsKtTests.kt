@@ -149,4 +149,53 @@ internal class FunctionsKtTests {
             assertThat(result).hasMessage("Path must not be blank")
         }
     }
+
+    @Nested
+    inner class ExceptionExpectedTests {
+
+        @Test
+        fun `fails if suspend function doesn't throw anything`() {
+            var result: Throwable? = null
+
+            // when
+            try {
+                exceptionExpected<AssertionFailedError> {
+
+                }
+            } catch (e: AssertionError) {
+                result = e
+            }
+
+            // then
+            assertThat(result).hasMessage("No exception has been thrown")
+        }
+
+        @Test
+        fun `fails if exception has different type`() {
+            var result: Throwable? = null
+
+            // when
+            try {
+                exceptionExpected<IllegalArgumentException> {
+                    throw IllegalStateException()
+                }
+            } catch (e: AssertionError) {
+                result = e
+            }
+
+            // then
+            assertThat(result).hasMessage("Expected [IllegalArgumentException] to be thrown, but [IllegalStateException] was thrown.")
+        }
+
+        @Test
+        fun `successfully returns exception`() {
+            // when
+            val result = exceptionExpected<IllegalArgumentException> {
+                throw IllegalArgumentException("test message")
+            }
+
+            // then
+            assertThat(result).hasMessage("test message")
+        }
+    }
 }
