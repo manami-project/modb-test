@@ -9,6 +9,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: 'Remove outdated pre-releases'
+        uses: actions/delete-package-versions@v3
+        with:
+          package-name: 'io.github.manamiproject.${{ github.event.repository.name }}'
+          min-versions-to-keep: 1
+          delete-only-pre-release-versions: 'true'
+      - name: 'Remove outdated releases'
+        uses: actions/delete-package-versions@v3
+        with:
+          package-name: 'io.github.manamiproject.${{ github.event.repository.name }}'
+          min-versions-to-keep: 5
       - name: Checkout
         uses: actions/checkout@v3
       - name: Extract release version
