@@ -48,7 +48,7 @@ internal class TempDirectoryKtTest {
 
             // when
             assertThrows<IllegalStateException> {
-                tempDirectory {
+                tempDirectorySuspendable {
                     tempDir = this.tempDir
 
                     throw IllegalStateException()
@@ -67,7 +67,7 @@ internal class TempDirectoryKtTest {
             var tempDir: Path = currentDirectory
 
             // when
-            tempDirectory {
+            tempDirectorySuspendable {
                 tempDir = this.tempDir
             }
 
