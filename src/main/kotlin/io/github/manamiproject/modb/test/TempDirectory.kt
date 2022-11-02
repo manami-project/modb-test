@@ -22,37 +22,20 @@ public class TempDirectory(prefix: String = "modb_") : Closeable {
 /**
  * Creates a temporary directory and ensures that it is removed after test execution even if an exception occurred.
  * The temporary directory is prefixed with _modb__.
+ * You can access the temporary directory within [action] using the variable `tempDir`.
  *
  * **Example**
  *
  * ```
  * tempDirectory {
- *      println(Files.exist(tempDir))
- * }
- * ```
- *
- * @since 1.0.0
- */
-@Deprecated("Use coroutine instead", ReplaceWith(""))
-public fun tempDirectory(action: TempDirectory.() -> Unit): Unit = tempDirectorySuspendable { action.invoke(this) }
-
-/**
- * Creates a temporary directory and ensures that it is removed after test execution even if an exception occurred.
- * The temporary directory is prefixed with _modb__.
- * You can access the created temporary directry within [action] using the variable `tempDir`.
- *
- * **Example**
- *
- * ```
- * tempDirectorySuspendable {
- *      println(Files.exist(tempDir))
+ *     println(Files.exist(tempDir))
  * }
  * ```
  *
  * @since 1.4.0
  * @param action Can take any action including suspend functions.
  */
-public fun tempDirectorySuspendable(action: suspend TempDirectory.() -> Unit) {
+public fun tempDirectory(action: suspend TempDirectory.() -> Unit) {
     val tempDir = TempDirectory()
 
     tempDir.use {
