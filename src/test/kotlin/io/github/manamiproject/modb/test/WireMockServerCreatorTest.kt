@@ -3,7 +3,7 @@ package io.github.manamiproject.modb.test
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock.*
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import java.net.HttpURLConnection
 import java.net.HttpURLConnection.HTTP_OK
 import java.net.URL
