@@ -9,6 +9,7 @@ import java.nio.file.Path
  * Helper class for [tempDirectory]
  * @since 1.0.0
  * @see tempDirectory
+ * @param prefix Prefix of the temporary directory.
  */
 public class TempDirectory(prefix: String = "modb_") : Closeable {
 
@@ -20,7 +21,7 @@ public class TempDirectory(prefix: String = "modb_") : Closeable {
 }
 
 /**
- * Creates a temporary directory and ensures that it is removed after test execution even if an exception occurred.
+ * Creates a temporary directory and ensures that it's removed after test execution even if an exception occurred.
  * The temporary directory is prefixed with _modb__.
  * You can access the temporary directory within [action] using the variable `tempDir`.
  *
