@@ -51,7 +51,8 @@ public fun testResource(path: String): Path {
  * @since 1.0.0
  * @see testResource
  * @return Content of a file as [String]
- * @throws IllegalStateException If the given path is not a regular file.
+ * @throws IllegalArgumentException If the [path] is blank.
+ * @throws IllegalStateException If the given [path] is not a regular file.
  */
 public fun loadTestResource(path: String): String {
     require(path.isNotBlank()) { "Path must not be blank" }
