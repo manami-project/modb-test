@@ -57,7 +57,7 @@ public fun loadTestResource(path: String): String {
     require(path.isNotBlank()) { "Path must not be blank" }
 
     val file = testResource(path)
-    check(Files.exists(file) and Files.isRegularFile(file)) { "[$path] either not exist or is not a file." }
+    check(Files.exists(file) and Files.isRegularFile(file)) { "[$path] either not exists or is not a file." }
 
     return getSystemResourceAsStream(path)?.bufferedReader()
             ?.use(BufferedReader::readText)

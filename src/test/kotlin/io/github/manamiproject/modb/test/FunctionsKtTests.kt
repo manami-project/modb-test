@@ -121,7 +121,7 @@ internal class FunctionsKtTests {
             }
 
             // then
-            assertThat(result).hasMessage("[$path] either not exist or is not a file.")
+            assertThat(result).hasMessage("[$path] either not exists or is not a file.")
         }
 
         @Test
