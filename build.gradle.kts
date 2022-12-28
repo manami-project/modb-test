@@ -19,7 +19,7 @@ val githubUsername = "manami-project"
 
 dependencies {
     api(kotlin("test-junit5"))
-    api(kotlin("stdlib-jdk8"))
+    api(kotlin("stdlib"))
     api("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
     api("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
     api("org.junit.platform:junit-platform-launcher:1.9.1")
