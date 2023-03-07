@@ -21,7 +21,6 @@ jobs:
       - name: create pull request
         uses: peter-evans/create-pull-request@v4
         with:
-          repo: ${{ secrets.TRIGGER_CHECKS_WORKAROUND_TOKEN }}
           commit-message: "Update gradle to ${{ steps.gradleUpdate.outputs.gradle-version }}"
           branch: "gradle_update/version_${{ steps.gradleUpdate.outputs.gradle-version }}"
           delete-branch: true
