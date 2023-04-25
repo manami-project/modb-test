@@ -1,7 +1,7 @@
 import Build_gradle.Versions.JUNIT_VERSION
 
 plugins {
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "1.8.21"
     `maven-publish`
     `java-library`
     jacoco
