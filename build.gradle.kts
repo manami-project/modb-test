@@ -116,7 +116,7 @@ tasks.jacocoTestReport {
 }
 
 object Versions {
-    const val JVM_TARGET = "17"
+    const val JVM_TARGET = "21"
     const val JUNIT_VERSION = "5.9.2"
 }
 
