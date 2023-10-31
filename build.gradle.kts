@@ -1,4 +1,3 @@
-val jvmTarget = "21"
 val junitVersion = "5.10.0"
 
 plugins {
@@ -33,12 +32,12 @@ dependencies {
 
 kotlin {
     explicitApi()
-    jvmToolchain(jvmTarget.toInt())
+    jvmToolchain(JavaVersion.VERSION_21.toString().toInt())
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = this@Build_gradle.jvmTarget
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 }
 
