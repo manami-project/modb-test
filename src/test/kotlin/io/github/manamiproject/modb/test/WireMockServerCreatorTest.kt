@@ -3,10 +3,10 @@ package io.github.manamiproject.modb.test
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock.*
 import org.assertj.core.api.Assertions.assertThat
-import kotlin.test.Test
 import java.net.HttpURLConnection
 import java.net.HttpURLConnection.HTTP_OK
-import java.net.URL
+import java.net.URI
+import kotlin.test.Test
 
 internal class WireMockServerCreatorTest : MockServerTestCase<WireMockServer> by WireMockServerCreator() {
 
@@ -21,7 +21,7 @@ internal class WireMockServerCreatorTest : MockServerTestCase<WireMockServer> by
                 )
         )
 
-        val connection = (URL("http://localhost:$port/test").openConnection() as HttpURLConnection).apply {
+        val connection = (URI("http://localhost:$port/test").toURL().openConnection() as HttpURLConnection).apply {
             requestMethod = "HEAD"
         }
 
