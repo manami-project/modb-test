@@ -2,6 +2,7 @@ package io.github.manamiproject.modb.test
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock.*
+import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import java.net.HttpURLConnection
 import java.net.HttpURLConnection.HTTP_OK
@@ -30,5 +31,38 @@ internal class WireMockServerCreatorTest : MockServerTestCase<WireMockServer> by
 
         // then
         assertThat(responseCode).isEqualTo(HTTP_OK)
+    }
+
+    @Test
+    fun `templating is enabled`() {
+        runBlocking {
+            // given
+            val path = "graphql"
+            val httpResponseCode = 200
+            val body = "{ \"key\": \"some-value\" }"
+
+            serverInstance.stubFor(
+                post(urlPathEqualTo("/$path")).willReturn(
+                    aResponse()
+                        .withStatus(httpResponseCode)
+                        .withHeader("content-type", "application/json")
+                        .withBody("{{request.body}}")
+                )
+            )
+
+            val connection = (URI("http://localhost:$port/$path").toURL().openConnection() as HttpURLConnection).apply {
+                requestMethod = "POST"
+                doOutput = true
+            }
+            connection.outputStream.use {
+                it.write(body.encodeToByteArray())
+            }
+
+            // when
+            val result = connection.inputStream.bufferedReader().readText()
+
+            // then
+            assertThat(result).isEqualTo(body)
+        }
     }
 }

@@ -20,7 +20,9 @@ public class WireMockServerCreator : MockServerTestCase<WireMockServer> {
 
     private fun initServer(): WireMockServer {
         return WireMockServer(
-            wireMockConfig().dynamicPort()
+            wireMockConfig()
+                .dynamicPort()
+                .globalTemplating(true)
         ).apply {
             start()
         }

@@ -1,4 +1,5 @@
-import Build_gradle.Versions.JUNIT_VERSION
+val jvmTarget = "21"
+val junitVersion = "5.9.2"
 
 plugins {
     kotlin("jvm") version "1.9.20"
@@ -20,11 +21,11 @@ val githubUsername = "manami-project"
 dependencies {
     api(kotlin("test-junit5"))
     api(kotlin("stdlib"))
-    api("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
-    api("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
+    api("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    api("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     api("org.junit.platform:junit-platform-launcher:1.10.0")
     api("org.assertj:assertj-core:3.24.2")
-    api("com.github.tomakehurst:wiremock:3.0.1")
+    api("org.wiremock:wiremock:3.2.0")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3")
 
     implementation(platform(kotlin("bom")))
@@ -32,12 +33,12 @@ dependencies {
 
 kotlin {
     explicitApi()
-    jvmToolchain(Versions.JVM_TARGET.toInt())
+    jvmToolchain(jvmTarget.toInt())
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = Versions.JVM_TARGET
+        jvmTarget = this@Build_gradle.jvmTarget
     }
 }
 
@@ -113,11 +114,6 @@ tasks.jacocoTestReport {
         xml.outputLocation.set(file("${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"))
     }
     dependsOn(allprojects.map { it.tasks.named<Test>("test") })
-}
-
-object Versions {
-    const val JVM_TARGET = "21"
-    const val JUNIT_VERSION = "5.9.2"
 }
 
 fun parameter(name: String, default: String = ""): String {
