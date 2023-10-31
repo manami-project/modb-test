@@ -1,5 +1,5 @@
 val jvmTarget = "21"
-val junitVersion = "5.9.2"
+val junitVersion = "5.10.0"
 
 plugins {
     kotlin("jvm") version "1.9.20"
