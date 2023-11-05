@@ -1,4 +1,4 @@
-val junitVersion = "5.10.0"
+val junitVersion = "5.10.1"
 
 plugins {
     kotlin("jvm") version "1.9.20"
@@ -22,7 +22,7 @@ dependencies {
     api(kotlin("stdlib"))
     api("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     api("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    api("org.junit.platform:junit-platform-launcher:1.10.0")
+    api("org.junit.platform:junit-platform-launcher:1.10.1")
     api("org.assertj:assertj-core:3.24.2")
     api("org.wiremock:wiremock:3.3.1")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3")
