@@ -94,21 +94,30 @@ internal class FunctionsKtTests {
     inner class LoadTestResourceTests {
 
         @Test
-        fun `load test resource from root directory`() {
+        fun `load test resource as String from root directory`() {
             // when
-            val result = loadTestResource("test_resource_tests/test-file.txt")
+            val result = loadTestResource<String>("test_resource_tests/test-file.txt")
 
             // then
             assertThat(result).isEqualTo("File in\n\nroot directory.")
         }
 
         @Test
-        fun `load test resource from subdirectory`() {
+        fun `load test resource as String from subdirectory`() {
             // when
-            val result = loadTestResource("test_resource_tests/subdirectory/other-test-file.txt")
+            val result = loadTestResource<String>("test_resource_tests/subdirectory/other-test-file.txt")
 
             // then
             assertThat(result).isEqualTo("File in\nsubdirectory.")
+        }
+
+        @Test
+        fun `load test resource as ByteArray from root directory`() {
+            // when
+            val result = loadTestResource<ByteArray>("test_resource_tests/test-file.txt")
+
+            // then
+            assertThat(result).isEqualTo("File in\n\nroot directory.".toByteArray())
         }
 
         @Test
@@ -135,6 +144,19 @@ internal class FunctionsKtTests {
 
             // then
             assertThat(result).hasMessage("Path [$path] not found.")
+        }
+
+        @Test
+        fun `throws an exception if the the generic type is not supported`() {
+            val path = "test_resource_tests/test-file.txt"
+
+            // when
+            val result = assertThrows<IllegalStateException> {
+                loadTestResource<Int>(path)
+            }
+
+            // then
+            assertThat(result).hasMessage("Unsupported file type. String and ByteArray are supported.")
         }
 
         @ParameterizedTest

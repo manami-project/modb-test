@@ -6,6 +6,7 @@ import java.lang.ClassLoader.getSystemResourceAsStream
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import kotlin.io.path.readBytes
 import kotlin.test.fail
 
 /**
@@ -54,16 +55,20 @@ public fun testResource(path: String): Path {
  * @throws IllegalArgumentException If the [path] is blank.
  * @throws IllegalStateException If the given [path] is not a regular file.
  */
-public fun loadTestResource(path: String): String {
+public inline fun <reified T> loadTestResource(path: String): T {
     require(path.isNotBlank()) { "Path must not be blank" }
 
     val file = testResource(path)
     check(Files.exists(file) and Files.isRegularFile(file)) { "[$path] either not exists or is not a file." }
 
-    return getSystemResourceAsStream(path)?.bufferedReader()
+    return when (T::class) {
+        String::class -> getSystemResourceAsStream(path)?.bufferedReader()
             ?.use(BufferedReader::readText)
-            ?.replace(System.lineSeparator(), "\n")
+            ?.replace(System.lineSeparator(), "\n") as T
             ?: throw IllegalStateException("Unable to load file [$path]")
+        ByteArray::class -> file.readBytes() as T
+        else -> throw IllegalStateException("Unsupported file type. String and ByteArray are supported.")
+    }
 }
 
 /**
