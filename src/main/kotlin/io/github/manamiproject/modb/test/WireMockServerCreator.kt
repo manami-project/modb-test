@@ -2,7 +2,6 @@ package io.github.manamiproject.modb.test
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig
-import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer
 
 /**
  * Starts a [WireMockServer] on a random port and stops it after the test.

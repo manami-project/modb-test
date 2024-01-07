@@ -62,7 +62,7 @@ public fun loadTestResource(path: String): String {
 
     return getSystemResourceAsStream(path)?.bufferedReader()
             ?.use(BufferedReader::readText)
-            ?.replace(System.getProperty("line.separator"), "\n")
+            ?.replace(System.lineSeparator(), "\n")
             ?: throw IllegalStateException("Unable to load file [$path]")
 }
 
