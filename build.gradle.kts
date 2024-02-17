@@ -25,7 +25,7 @@ dependencies {
     api("org.junit.platform:junit-platform-launcher:1.10.2")
     api("org.assertj:assertj-core:3.25.3")
     api("org.wiremock:wiremock:3.4.0")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.8.0")
 
     implementation(platform(kotlin("bom")))
 }
