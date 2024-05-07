@@ -1,7 +1,7 @@
 val junitVersion = "5.10.2"
 
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "1.9.24"
     `maven-publish`
     `java-library`
     jacoco
