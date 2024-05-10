@@ -3,7 +3,7 @@ assertj-core = "3.25.3"
 wiremock = "3.5.4"
 junit-jupiter = "5.10.2"
 platform-launcher = "1.10.2"
-kotlinx-coroutines-core-jvm = "1.8.0"
+kotlinx-coroutines-core-jvm = "1.8.1"
 kotlin = "1.9.24"
 coveralls-jacoco = "1.2.20"
 
