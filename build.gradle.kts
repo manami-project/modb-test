@@ -1,33 +1,30 @@
-val junitVersion = "5.10.2"
-
 plugins {
-    kotlin("jvm") version "1.9.24"
+    alias(libs.plugins.kotlin.jvm)
     `maven-publish`
     `java-library`
     jacoco
-    id("com.github.nbaztec.coveralls-jacoco") version "1.2.20"
+    alias(libs.plugins.coveralls.jacoco)
 }
+
+group = "io.github.manamiproject"
+version = project.findProperty("release.version") as String? ?: ""
+
+val projectName = "modb-test"
+val githubUsername = "manami-project"
 
 repositories {
     mavenCentral()
 }
 
-group = "io.github.manamiproject"
-version = project.findProperty("release.version") as String? ?: ""
-val projectName = "modb-test"
-val githubUsername = "manami-project"
-
 dependencies {
-    api(kotlin("test-junit5"))
-    api(kotlin("stdlib"))
-    api("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-    api("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    api("org.junit.platform:junit-platform-launcher:1.10.2")
-    api("org.assertj:assertj-core:3.25.3")
-    api("org.wiremock:wiremock:3.5.4")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.8.0")
-
-    implementation(platform(kotlin("bom")))
+    api(libs.kotlin.stdlib)
+    api(libs.kotlin.test.junit5)
+    api(libs.junit.jupiter.engine)
+    api(libs.junit.jupiter.params)
+    api(libs.junit.platform.launcher)
+    api(libs.assertj.core)
+    api(libs.wiremock)
+    api(libs.kotlinx.coroutines.core.jvm)
 }
 
 kotlin {
