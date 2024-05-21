@@ -44,4 +44,7 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew jacocoTestReport coverallsJacoco
+        run: ./gradlew jacocoTestReport
+      - name: Upload coverage
+        if: ${{ matrix.java == 21 }}
+        uses: coverallsapp/github-action@v2
