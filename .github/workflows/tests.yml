@@ -1,6 +1,9 @@
-name: Pull Requests
+name: 'Tests'
 
 on:
+  push:
+    branches:
+      - 'master'
   pull_request:
   merge_group:
     branches:
@@ -10,10 +13,10 @@ on:
       - '.gitignore'
       - '.gitattributes'
       - '.github/workflows/**'
-      - '!.github/workflows/pull-requests.yml'
+      - '!.github/workflows/tests.yml'
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,7 +37,7 @@ jobs:
         run: ./gradlew test
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
+        if: github.ref != 'refs/heads/master'
         with:
           check_name: Test results JDK ${{ matrix.java }}
           comment_title: Test results JDK ${{ matrix.java }}
@@ -46,6 +49,3 @@ jobs:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew jacocoTestReport
-      - name: Upload coverage
-        if: ${{ matrix.java == 21 }}
-        uses: coverallsapp/github-action@v2
