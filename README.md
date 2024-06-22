@@ -2,17 +2,17 @@
 # modb-test
 _[modb](https://github.com/manami-project?tab=repositories&q=modb&type=source)_ stands for _**M**anami **O**ffline **D**ata**B**ase_. Repositories prefixed with this acronym are used to create the [manami-project/anime-offline-database](https://github.com/manami-project/anime-offline-database).
 
-# What does this lib do?
+## What does this lib do?
 This lib contains all essential dependencies as well as some convenience functions and classes for creating tests in _modb_ prefixed kotlin projects.
 
-# Features
-## essential test dependencies
+## Features
+### essential test dependencies
 * junit5
 * kotlin-test for junit5
 * assertj
 * wiremock
 
-## easy access to test resources
+### easy access to test resources
 ```kotlin
 // access to a file in src/test/resources
 val file: Path = testResource("file.txt") // for src/test/resources/file.txt
@@ -23,7 +23,7 @@ val fileContent: String = loadTestResource("file.txt") // for src/test/resources
 val fileContent: String = loadTestResource("dir/subdir/file.txt") // for src/test/resources/dir/subdir/file.txt
 ```
 
-## temporary directory
+### temporary directory
 Creates a temporary directory and ensures that it will be deleted after test execution even if the test fails due to an exception. 
 ```kotlin
 tempDirectory {
@@ -31,7 +31,7 @@ tempDirectory {
 }
 ```
 
-## mock server test cases
+### mock server test cases
 Create mock server test cases.
 ```kotlin
 internal class SampleTest : MockServerTestCase<WireMockServer> by WireMockServerCreator() {
