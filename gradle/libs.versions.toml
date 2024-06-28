@@ -5,6 +5,7 @@ junit-jupiter = "5.10.3"
 platform-launcher = "1.10.3"
 kotlinx-coroutines-core-jvm = "1.8.1"
 kotlin = "2.0.0"
+kover = "0.8.2"
 
 [libraries]
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj-core" }
@@ -18,3 +19,4 @@ kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", versi
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
