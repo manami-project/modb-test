@@ -1,5 +1,5 @@
 [versions]
-assertj-core = "3.26.0"
+assertj-core = "3.26.3"
 wiremock = "3.8.0"
 junit-jupiter = "5.10.3"
 platform-launcher = "1.10.3"
