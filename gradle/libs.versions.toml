@@ -4,7 +4,7 @@ wiremock = "3.9.1"
 junit-jupiter = "5.11.0"
 platform-launcher = "1.11.0"
 kotlinx-coroutines-core-jvm = "1.8.1"
-kotlin = "2.0.10"
+kotlin = "2.0.20"
 kover = "0.8.3"
 
 [libraries]
