@@ -1,6 +1,6 @@
 [versions]
 assertj-core = "3.26.3"
-wiremock = "3.9.1"
+wiremock = "3.9.2"
 junit-jupiter = "5.11.3"
 platform-launcher = "1.11.3"
 kotlinx-coroutines-core-jvm = "1.9.0"
